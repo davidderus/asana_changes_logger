@@ -10,10 +10,11 @@ module AsanaChangeLogger
     defined?(APP_CONFIG) && APP_CONFIG[:api_key]
   end
 
-  if AsanaChangeLogger::OPTS[:days]
+  if AsanaChangeLogger::OPTS[:project] && AsanaChangeLogger::OPTS[:days]
     # Checking for auth
     raise 'Auth error' unless auth?
     # Should get tasks for said days
+    Asana.new(APP_CONFIG[:api_key]).get_project_tasks(AsanaChangeLogger::OPTS[:project], AsanaChangeLogger::OPTS[:days]).filter_by_ended
     if AsanaChangeLogger::OPTS[:output]
       # Should store output in file
     else
