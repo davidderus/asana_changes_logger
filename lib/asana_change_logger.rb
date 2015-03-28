@@ -10,7 +10,7 @@ module AsanaChangeLogger
     defined?(APP_CONFIG) && APP_CONFIG[:api_key]
   end
 
-  if AsanaChangeLogger::OPTS[:project] && AsanaChangeLogger::OPTS[:days]
+  if OPTS[:project] && OPTS[:days]
     # Checking for auth
     raise 'Auth error' unless auth?
 
@@ -18,18 +18,18 @@ module AsanaChangeLogger
     asana = Asana.new(APP_CONFIG[:api_key])
 
     # Getting tasks
-    project_tasks = asana.get_project_tasks(AsanaChangeLogger::OPTS[:project], AsanaChangeLogger::OPTS[:days])
+    project_tasks = asana.get_project_tasks(OPTS[:project], OPTS[:days])
 
     # Outputing
     export = Exporter.new(project_tasks)
 
-    if AsanaChangeLogger::OPTS[:'log-remaining']
-      export.append_remaining asana.get_remaining_tasks(AsanaChangeLogger::OPTS[:project])
+    if OPTS[:'log-remaining']
+      export.append_remaining asana.get_remaining_tasks(OPTS[:project])
     end
 
-    if AsanaChangeLogger::OPTS[:output]
+    if OPTS[:output]
       # Should store output in file
-      export.save(AsanaChangeLogger::OPTS[:output])
+      export.save(OPTS[:output])
     else
       # Should print output to screen
       export.to_term
