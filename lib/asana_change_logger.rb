@@ -6,7 +6,7 @@ require 'asana_change_logger/export'
 
 
 =begin
- - group by tags
+ - name for global tag (instead of 'General')
  - set/update asana auth
  - show message on unknown argument (and handle exceptions everywhere)
  - write tests (it's never too late)
