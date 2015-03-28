@@ -3,8 +3,13 @@
 ## Tasks done:
 <% end %>
 
-<% @as_tasks.each do |task| %>
+<% group_by(@as_tasks, 'tags').each do |key, tasks| %>
+### <%= key.size == 0 ? 'General' : key %>
+
+<% tasks.each do |task| %>
 - <%= task.get('name') %><% if task.get('assignee') %> **[<%= task.get('assignee') %>]**<% end %>
+
+<% end %>
 
 <% end %>
 <% if remaining? %>

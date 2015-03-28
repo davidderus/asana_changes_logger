@@ -11,14 +11,19 @@
   <% if remaining? %>
     <h2>Tasks done:</h2>
   <% end %>
+
+  <% group_by(@as_tasks, 'tags').each do |key, tasks| %>
+  <h3><%= key.size == 0 ? 'General' : key %></h3>
   
   <ul>
-  <% @as_tasks.each do |task| %>
+  <% tasks.each do |task| %>
     <li>
       <%= task.get('name') %>&nbsp;<% if task.get('assignee') %><small>[<%= task.get('assignee') %>]</small><% end %>
     </li>
   <% end %>
   </ul>
+
+  <% end %>
 
   <% if remaining? %>
 

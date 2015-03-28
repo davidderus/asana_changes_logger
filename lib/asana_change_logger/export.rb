@@ -15,8 +15,8 @@ module AsanaChangeLogger
     end
 
 
-    def group_by
-      @as_tasks.group_by { |x| x.get('tags') }
+    def group_by(source, key)
+      source.group_by { |x| x.get(key) }
     end
 
 
