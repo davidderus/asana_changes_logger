@@ -68,8 +68,10 @@ module AsanaChangeLogger
 
       case format
         when 'md'
+        when 'markdown'
           content = to_markdown
         when 'html'
+        when 'htm'
           content = to_html
         else
           content = to_plaintext
