@@ -67,11 +67,9 @@ module AsanaChangeLogger
       format = format ? format[1..-1] : nil
 
       case format
-        when 'md'
-        when 'markdown'
+        when 'md', 'markdown'
           content = to_markdown
-        when 'html'
-        when 'htm'
+        when 'html', 'htm'
           content = to_html
         else
           content = to_plaintext
