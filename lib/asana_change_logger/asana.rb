@@ -89,4 +89,20 @@ class Asana
     end
     full_errors.join(', ')
   end
+
+  class Task
+    def initialize(task)
+      @task = task
+    end
+
+    def get(property)
+      res = @task[property]
+
+      if res.is_a?(Hash)
+        res = res['name'] ||= res['id']
+      end
+
+      res
+    end
+  end
 end
