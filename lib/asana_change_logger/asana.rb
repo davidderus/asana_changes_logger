@@ -99,10 +99,15 @@ class Asana
 
       if res.is_a?(Hash)
         res = res['name'] ||= res['id']
+      elsif res.is_a?(Array)
+        res_array = []
+        res.each { |tag| res_array << tag['name'] }
+        res = res_array.join(', ')
       end
 
       res
     end
+
 
     def to_s
       get('name')

@@ -15,8 +15,8 @@ module AsanaChangeLogger
     end
 
 
-    def group_by(key)
-      # TODO : Implement group_by to group by tags for example
+    def group_by
+      @as_tasks.group_by { |x| x.get('tags') }
     end
 
 
