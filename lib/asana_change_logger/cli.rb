@@ -1,7 +1,7 @@
 require 'Slop'
 
 module AsanaChangeLogger
-  opts = Slop.parse do |o|
+  OPTS = Slop.parse do |o|
     o.integer '-d', '--days', 'Number of days to get', default: 5
     o.string '-o', '--output', 'The output file'
     o.on '-v', '--version', 'Print the current version' do
