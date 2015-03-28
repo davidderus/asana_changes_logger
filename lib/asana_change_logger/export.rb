@@ -62,14 +62,17 @@ module AsanaChangeLogger
     end
 
 
-    def save(dest, format)
+    def save(dest)
+      format = File.extname(dest)
+      format = format ? format[1..-1] : nil
+
       case format
-      when 'md'
-        content = to_markdown
-      when 'html'
-        content = to_html
-      else
-        content = to_plaintext
+        when 'md'
+          content = to_markdown
+        when 'html'
+          content = to_html
+        else
+          content = to_plaintext
       end
 
       File.open(dest, 'w') { |file| file.write(content) }
