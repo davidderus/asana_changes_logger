@@ -24,9 +24,9 @@ module AsanaChangeLogger
     export = Exporter.new(project_tasks)
 
     if AsanaChangeLogger::OPTS[:'log-remaining']
-      asana.get_remaining_tasks(AsanaChangeLogger::OPTS[:project])
-      # TODO: Handle export
+      export.append_remaining asana.get_remaining_tasks(AsanaChangeLogger::OPTS[:project])
     end
+
     if AsanaChangeLogger::OPTS[:output]
       # Should store output in file
       export.save(AsanaChangeLogger::OPTS[:output], AsanaChangeLogger::OPTS[:format])

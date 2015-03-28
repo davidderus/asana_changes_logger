@@ -6,17 +6,28 @@ module AsanaChangeLogger
     def initialize(tasks)
       @list_tasks = tasks
       @as_tasks = []
-      objectify
+      objectify @list_tasks, @as_tasks
     end
 
 
-    def objectify
-      @list_tasks.each { |task| @as_tasks << Asana::Task.new(task) }
+    def objectify(source, dest)
+      source.each { |task| dest << Asana::Task.new(task) }
     end
 
 
     def group_by(key)
 
+    end
+
+
+    def append_remaining(remaining_source)
+      @remaining_tasks = []
+      objectify remaining_source, @remaining_tasks
+    end
+
+
+    def remaining?
+      @remaining_tasks && @remaining_tasks.length > 0
     end
 
 

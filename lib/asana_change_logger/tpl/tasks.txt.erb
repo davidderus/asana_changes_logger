@@ -1,6 +1,19 @@
 <%= Date.today.to_s %> - Changelog
+<% if remaining? %>
+Tasks done:
+<% end %>
 
 <% @as_tasks.each do |task| %>
 - <%= task.get('name') %><% if task.get('assignee') %> [<%= task.get('assignee') %>]<% end %>
 
+<% end %>
+<% if remaining? %>
+
+
+Remaining tasks:
+
+<% @remaining_tasks.each do |task| %>
+- <%= task.get('name') %><% if task.get('due_on') %>, due on <%= task.get('due_on') %><% end %>
+
+<% end %>
 <% end %>
