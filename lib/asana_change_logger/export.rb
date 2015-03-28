@@ -27,12 +27,17 @@ module AsanaChangeLogger
 
 
     def remaining?
-      @remaining_tasks
+      @remaining_tasks && @remaining_tasks.size > 0
     end
 
 
     def ready?
       @as_tasks
+    end
+
+
+    def empty?
+      @as_tasks.size == 0
     end
 
 
