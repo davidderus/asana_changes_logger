@@ -1,6 +1,4 @@
 require 'Slop'
-require 'asana'
-require 'export'
 
 module AsanaChangeLogger
   opts = Slop.parse do |o|

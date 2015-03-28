@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+require 'asana_change_logger'
