@@ -1,0 +1,6 @@
+# <%= Date.today.to_s %> - Changelog
+
+<% @as_tasks.each do |task| %>
+- <%= task.get('name') %><% if task.get('assignee') %> [<%= task.get('assignee') %>]<% end %>
+
+<% end %>

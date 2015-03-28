@@ -27,20 +27,22 @@ module AsanaChangeLogger
 
     def to_markdown
       raise 'Not ready' unless ready?
-      @as_tasks.join("\r\n")
+      
+      render('tasks.md')
     end
 
 
     def to_html
       raise 'Not ready' unless ready?
-      @as_tasks.join("\r\n")
+      
+      render('tasks.html')
     end
 
 
     def to_plaintext
       raise 'Not ready' unless ready?
       
-      render('plaintext.txt')
+      render('tasks.txt')
     end
 
 
