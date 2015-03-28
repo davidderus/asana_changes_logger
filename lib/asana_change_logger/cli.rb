@@ -2,10 +2,14 @@ require 'Slop'
 
 module AsanaChangeLogger
   opts = Slop.parse do |o|
-    o.string '-h', '--host', 'a hostname'
-    o.integer '--port', 'custom port', default: 80
-    o.on '--version', 'print the version' do
+    o.integer '-d', '--days', 'Number of days to get', default: 5
+    o.string '-o', '--output', 'The output file'
+    o.on '-v', '--version', 'Print the current version' do
       puts AsanaChangeLogger::VERSION
+      exit
+    end
+    o.on '-h', '--help', 'Print help' do
+      puts o
       exit
     end
   end
