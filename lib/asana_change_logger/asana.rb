@@ -23,16 +23,18 @@ class Asana
     completed_since = completed_since.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
     completed_since = CGI.escape(completed_since)
 
-    tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name")
-    @tasks = tasks['data']
+    tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name")['data']
 
     if completed
-      @tasks = @tasks.select { |task| task['completed'] == true }
+      tasks = tasks.select { |task| task['completed'] == true }
     end
 
-    puts @tasks
+    tasks
+  end
 
-    return self
+
+  def get_remaining_tasks(project_id)
+    http_get("projects/#{project_id}/tasks?completed_since=now&opt_fields=name,due_on")['data']
   end
 
 

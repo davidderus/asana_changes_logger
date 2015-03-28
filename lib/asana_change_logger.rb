@@ -12,9 +12,15 @@ module AsanaChangeLogger
   if AsanaChangeLogger::OPTS[:project] && AsanaChangeLogger::OPTS[:days]
     # Checking for auth
     raise 'Auth error' unless auth?
-    # Should get tasks for said days
-    Asana.new(APP_CONFIG[:api_key]).get_project_tasks(AsanaChangeLogger::OPTS[:project], AsanaChangeLogger::OPTS[:days], !AsanaChangeLogger::OPTS[:'log-remaining'])
+    # Connecting
+    asana = Asana.new(APP_CONFIG[:api_key])
+    # Getting tasks
+    asana.get_project_tasks(AsanaChangeLogger::OPTS[:project], AsanaChangeLogger::OPTS[:days])
+    # Outputing
     if AsanaChangeLogger::OPTS[:output]
+      if AsanaChangeLogger::OPTS[:'log-remaining']
+        asana.get_remaining_tasks(AsanaChangeLogger::OPTS[:project])
+      end
       # Should store output in file
     else
       # Should print output to screen
