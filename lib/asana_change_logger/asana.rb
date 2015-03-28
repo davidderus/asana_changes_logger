@@ -2,6 +2,9 @@ require 'base64'
 require 'JSON'
 require 'net/https'
 require 'date'
+require 'cgi'
+
+require 'asana_change_logger/export'
 
 class Asana
   def initialize(api_key)
@@ -15,21 +18,21 @@ class Asana
   end
 
 
-  def get_project_tasks(project_id, completed_since = nil)
+  def get_project_tasks(project_id, completed_since = nil, completed = true)
     completed_since = Date.today - completed_since
-    completed_since = completed_since.to_datetime
-    @tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}")
-    return self
-  end
+    completed_since = completed_since.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
+    completed_since = CGI.escape(completed_since)
 
+    tasks = http_get("projects/#{project_id}/tasks?completed=True&completed_since=#{completed_since}&opt_fields=name,completed,assignee.name")
+    @tasks = tasks['data']
 
-  def filter_by_ended
-    @tasks['data'].each do |task|
-      elem = http_get("tasks/#{task['id']}")
-      unless elem['data']['completed'] == 'true'
-        @tasks['data'].delete(task)
-      end
+    if completed
+      @tasks = @tasks.select { |task| task['completed'] = true }
     end
+
+    puts @tasks
+
+    return self
   end
 
 
@@ -39,7 +42,7 @@ class Asana
   def http_get(path)
     http, uri, header = http_init(path)
 
-    req = Net::HTTP::Get.new(uri.path, header)
+    req = Net::HTTP::Get.new(uri.request_uri, header)
     req.basic_auth(@api_key, '')
 
     @res = http.start { |http| http.request(req) }
