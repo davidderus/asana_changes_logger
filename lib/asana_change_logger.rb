@@ -4,6 +4,14 @@ require 'asana_change_logger/asana'
 require 'asana_change_logger/config'
 require 'asana_change_logger/export'
 
+
+=begin
+ - group by tags
+ - set/update asana auth
+ - show message on unknown argument (and handle exceptions everywhere)
+ - write tests (it's never too late)
+=end
+
 module AsanaChangeLogger
 
   def self.auth?
