@@ -27,12 +27,12 @@ module AsanaChangeLogger
 
 
     def remaining?
-      @remaining_tasks && @remaining_tasks.length > 0
+      @remaining_tasks
     end
 
 
     def ready?
-      @as_tasks && @as_tasks.length > 0
+      @as_tasks
     end
 
 
