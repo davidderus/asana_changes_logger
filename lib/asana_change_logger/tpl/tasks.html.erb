@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Changelog</title>
-	<style>body {font-family: 'Helvetica Neue', Helvetica;}</style>
+  <meta charset="UTF-8">
+  <title>Changelog</title>
+  <style>body {font-family: 'Helvetica Neue', Helvetica;}</style>
 </head>
 <body>
-	<h1><%= Date.today.to_s %> - Changelog</h1>
+  <h1><%= Date.today.to_s %> - Changelog</h1>
+  
+  <% if remaining? %>
+    <h2>Tasks done:</h2>
+  <% end %>
+  
+  <ul>
+  <% @as_tasks.each do |task| %>
+    <li>
+      <%= task.get('name') %>&nbsp;<% if task.get('assignee') %><small>[<%= task.get('assignee') %>]</small><% end %>
+    </li>
+  <% end %>
+  </ul>
 
-	<ul>
-	<% @as_tasks.each do |task| %>
-		<li>
-			<%= task.get('name') %>&nbsp;<% if task.get('assignee') %><small>[<%= task.get('assignee') %>]</small><% end %>
-		</li>
-	<% end %>
-	</ul>
+  <% if remaining? %>
+
+    <h2>Remaining tasks:</h2>
+
+    <ul>
+    <% @remaining_tasks.each do |task| %>
+      <li><%= task.get('name') %><% if task.get('due_on') %> <em>due on <%= task.get('due_on') %></em><% end %></li>
+    <% end %>
+    </ul>
+
+  <% end %>
 </body>
 </html>
