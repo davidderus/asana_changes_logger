@@ -23,7 +23,7 @@ class Asana
     completed_since = completed_since.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
     completed_since = CGI.escape(completed_since)
 
-    tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags")
+    tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name")
     @tasks = tasks['data']
 
     if completed
