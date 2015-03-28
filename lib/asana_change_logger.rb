@@ -29,7 +29,7 @@ module AsanaChangeLogger
 
     if AsanaChangeLogger::OPTS[:output]
       # Should store output in file
-      export.save(AsanaChangeLogger::OPTS[:output], AsanaChangeLogger::OPTS[:format])
+      export.save(AsanaChangeLogger::OPTS[:output])
     else
       # Should print output to screen
       export.to_term
