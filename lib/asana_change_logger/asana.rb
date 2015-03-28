@@ -4,8 +4,6 @@ require 'net/https'
 require 'date'
 require 'cgi'
 
-require 'asana_change_logger/export'
-
 class Asana
   def initialize(api_key)
     @root = 'https://app.asana.com/api/1.0/'
@@ -95,6 +93,7 @@ class Asana
       @task = task
     end
 
+
     def get(property)
       res = @task[property]
 
@@ -103,6 +102,10 @@ class Asana
       end
 
       res
+    end
+
+    def to_s
+      get('name')
     end
   end
 end

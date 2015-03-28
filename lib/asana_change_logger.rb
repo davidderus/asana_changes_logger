@@ -2,6 +2,7 @@ require 'asana_change_logger/version'
 require 'asana_change_logger/cli'
 require 'asana_change_logger/asana'
 require 'asana_change_logger/config'
+require 'asana_change_logger/export'
 
 module AsanaChangeLogger
 
@@ -12,18 +13,26 @@ module AsanaChangeLogger
   if AsanaChangeLogger::OPTS[:project] && AsanaChangeLogger::OPTS[:days]
     # Checking for auth
     raise 'Auth error' unless auth?
+
     # Connecting
     asana = Asana.new(APP_CONFIG[:api_key])
+
     # Getting tasks
-    asana.get_project_tasks(AsanaChangeLogger::OPTS[:project], AsanaChangeLogger::OPTS[:days])
+    project_tasks = asana.get_project_tasks(AsanaChangeLogger::OPTS[:project], AsanaChangeLogger::OPTS[:days])
+
     # Outputing
+    export = Exporter.new(project_tasks)
+
+    if AsanaChangeLogger::OPTS[:'log-remaining']
+      asana.get_remaining_tasks(AsanaChangeLogger::OPTS[:project])
+      # TODO: Handle export
+    end
     if AsanaChangeLogger::OPTS[:output]
-      if AsanaChangeLogger::OPTS[:'log-remaining']
-        asana.get_remaining_tasks(AsanaChangeLogger::OPTS[:project])
-      end
       # Should store output in file
+      export.save(AsanaChangeLogger::OPTS[:output], AsanaChangeLogger::OPTS[:format])
     else
       # Should print output to screen
+      export.to_term
     end
   end
 end
