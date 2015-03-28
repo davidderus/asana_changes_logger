@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://davidderus.com"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files         = ['lib/asana_change_logger.rb', 'lib/asana_change_logger/asana.rb', 'lib/asana_change_logger/cli.rb', 'lib/asana_change_logger/export.rb', 'lib/asana_change_logger/version.rb']
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
