@@ -2,7 +2,11 @@ require 'yaml/store'
 
 class Config
   def initialize
-    @store = YAML::Store.new 'config.yml'
+    params_dir = File.join(Dir.home, '.asana_change_logger/')
+    unless Dir.exist?(params_dir)
+      Dir.mkdir(params_dir)
+    end
+    @store = YAML::Store.new params_dir + 'config.yml'
   end
 
 
