@@ -13,12 +13,11 @@ Gem::Specification.new do |spec|
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
   end
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = "Export Asana tasks to a changelog"
   spec.homepage      = "http://davidderus.com"
   spec.license       = "MIT"
 
-  spec.files         = ['lib/asana_change_logger.rb', 'lib/asana_change_logger/asana.rb', 'lib/asana_change_logger/cli.rb', 'lib/asana_change_logger/export.rb', 'lib/asana_change_logger/version.rb']
+  spec.files         = ['lib/asana_change_logger.rb', 'lib/asana_change_logger/asana.rb', 'lib/asana_change_logger/cli.rb', 'lib/asana_change_logger/export.rb', 'lib/asana_change_logger/config.rb', 'lib/asana_change_logger/version.rb']
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
