@@ -11,6 +11,7 @@ module AsanaChangeLogger
         o.string '-o', '--output', 'The output file. Allowed formats: html, md, txt'
         o.string '-a', '--api', 'Store the given API key and start using it from now'
         o.bool '-lr', '--log-remaining', 'Log remainins tasks too', default: false
+        o.bool '-ha', '--hide-author', 'Hide task assignee from changelog', default: false
         o.on '-v', '--version', 'Print the current version' do
           puts AsanaChangeLogger::VERSION
           exit

@@ -8,6 +8,7 @@ module AsanaChangeLogger
       @as_tasks = []
       @days = cli.opts[:days]
       @output = cli.opts[:output]
+      @hide_author = cli.opts[:'hide-author']
       objectify @list_tasks, @as_tasks
     end
 

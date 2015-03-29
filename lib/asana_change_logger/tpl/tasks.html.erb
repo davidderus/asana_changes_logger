@@ -25,7 +25,7 @@
   <ul>
   <% tasks.each do |task| %>
     <li>
-      <%= task.get('name') %>&nbsp;<% if task.get('assignee') %><small>[<%= task.get('assignee') %>]</small><% end %>
+      <%= task.get('name') %>&nbsp;<% if task.get('assignee') && !@hide_author %><small>[<%= task.get('assignee') %>]</small><% end %>
     </li>
   <% end %>
   </ul>

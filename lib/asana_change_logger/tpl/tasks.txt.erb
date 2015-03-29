@@ -17,7 +17,7 @@ No changes
 == <%= key.size == 0 ? 'General' : key %> ==
 
 <% tasks.each do |task| %>
-- <%= task.get('name') %><% if task.get('assignee') %> [<%= task.get('assignee') %>]<% end %>
+- <%= task.get('name') %><% if task.get('assignee') && !@hide_author %> [<%= task.get('assignee') %>]<% end %>
 
 <% end %>
 
