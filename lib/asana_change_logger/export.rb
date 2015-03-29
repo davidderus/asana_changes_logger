@@ -3,9 +3,11 @@ require 'erb'
 module AsanaChangeLogger
   class Exporter
 
-    def initialize(tasks)
+    def initialize(tasks, cli)
       @list_tasks = tasks
       @as_tasks = []
+      @days = cli.opts[:days]
+      @output = cli.opts[:output]
       objectify @list_tasks, @as_tasks
     end
 
@@ -67,7 +69,7 @@ module AsanaChangeLogger
     end
 
 
-    def save(dest)
+    def save(dest = @output)
       format = File.extname(dest)
       format = format ? format[1..-1] : nil
 

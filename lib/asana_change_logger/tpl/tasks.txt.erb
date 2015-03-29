@@ -1,5 +1,5 @@
-<% if OPTS[:days] > 0 %>
-> Changes between <%= Date.today - OPTS[:days] %> and <%= Date.today.to_s %>
+<% if @days > 0 %>
+> Changes between <%= Date.today - @days %> and <%= Date.today.to_s %>
 
 <% else %>
 > Today changes

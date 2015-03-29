@@ -25,7 +25,7 @@ module AsanaChangeLogger
         project_tasks = asana.get_project_tasks(cli.opts[:project], cli.opts[:days])
 
         # Outputing
-        export = Exporter.new(project_tasks)
+        export = Exporter.new(project_tasks, cli)
 
         if cli.opts[:'log-remaining']
           export.append_remaining asana.get_remaining_tasks(cli.opts[:project])
@@ -33,7 +33,7 @@ module AsanaChangeLogger
 
         if cli.opts[:output]
           # Should store output in file
-          export.save(cli.opts[:output])
+          export.save
         else
           # Should print output to screen
           export.to_term
