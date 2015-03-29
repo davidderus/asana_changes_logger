@@ -1,29 +1,23 @@
 require 'asana_change_logger/version'
 require 'asana_change_logger/cli'
 require 'asana_change_logger/asana'
-require 'asana_change_logger/config'
 require 'asana_change_logger/export'
-
-
-=begin
- - name for global tag (instead of 'General')
- - set/update asana auth
- - show message on unknown argument (and handle exceptions everywhere)
- - write tests (it's never too late)
-=end
+require 'asana_change_logger/config'
 
 module AsanaChangeLogger
 
-  def self.auth?
-    defined?(APP_CONFIG) && APP_CONFIG[:api_key]
+  conf = Config.new
+
+  if OPTS[:api]
+    conf.set_api_key(OPTS[:api])
   end
 
   if OPTS[:project] && OPTS[:days]
     # Checking for auth
-    raise 'Auth error' unless auth?
+    conf.auth?
 
     # Connecting
-    asana = Asana.new(APP_CONFIG[:api_key])
+    asana = Asana.new(conf.get_api_key)
 
     # Getting tasks
     project_tasks = asana.get_project_tasks(OPTS[:project], OPTS[:days])
