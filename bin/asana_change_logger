@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require 'asana_change_logger'
+
+acl = AsanaChangeLogger::Worker.new
