@@ -7,4 +7,4 @@
 /pkg/
 /spec/reports/
 /tmp/
-/lib/asana_change_logger/config.rb
+/config.yml
