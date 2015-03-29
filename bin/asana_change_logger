@@ -2,4 +2,4 @@
 
 require 'asana_change_logger'
 
-acl = AsanaChangeLogger::Worker.new
+AsanaChangeLogger::Worker.new
