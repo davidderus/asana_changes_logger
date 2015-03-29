@@ -17,9 +17,9 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://davidderus.com"
   spec.license       = "MIT"
 
-  spec.files         = ['lib/asana_change_logger.rb', 'lib/asana_change_logger/asana.rb', 'lib/asana_change_logger/cli.rb', 'lib/asana_change_logger/export.rb', 'lib/asana_change_logger/config.rb', 'lib/asana_change_logger/version.rb']
+  spec.files         = ['lib/asana_change_logger.rb', 'lib/asana_change_logger/asana.rb', 'lib/asana_change_logger/cli.rb', 'lib/asana_change_logger/export.rb', 'lib/asana_change_logger/config.rb', 'lib/asana_change_logger/version.rb', 'lib/asana_change_logger/tpl/tasks.html.erb', 'lib/asana_change_logger/tpl/tasks.txt.erb', 'lib/asana_change_logger/tpl/tasks.md.erb']
   spec.bindir        = "bin"
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.executables   = ['asana_change_logger']
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.8"
