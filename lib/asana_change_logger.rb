@@ -42,5 +42,7 @@ module AsanaChangeLogger
       # Should print output to screen
       export.to_term
     end
+  else
+    puts 'You have to specify a project ID and a number of days (0 or more).'
   end
 end
