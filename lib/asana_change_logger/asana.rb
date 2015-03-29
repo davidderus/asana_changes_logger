@@ -68,7 +68,8 @@ class Asana
   def http_conclude
     unless http_ok?
       errors = http_error_msg
-      raise "HTTP error : #{errors}"
+      puts "HTTP error : #{errors}"
+      exit
     end
 
     JSON.parse(@res.body)
