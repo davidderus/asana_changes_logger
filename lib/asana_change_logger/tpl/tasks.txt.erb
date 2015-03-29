@@ -1,16 +1,18 @@
 <% if OPTS[:days] > 0 %>
 > Changes between <%= Date.today - OPTS[:days] %> and <%= Date.today.to_s %>
+
 <% else %>
 > Today changes
 <% end %>
-
 <% if remaining? %>
+
 Tasks done:
 <% end %>
-
 <% if empty? %>
+
 No changes
 <% else %>
+
 <% group_by(@as_tasks, 'tags').each do |key, tasks| %>
 == <%= key.size == 0 ? 'General' : key %> ==
 
@@ -22,7 +24,6 @@ No changes
 <% end %>
 <% end %>
 <% if remaining? %>
-
 
 Remaining tasks:
 

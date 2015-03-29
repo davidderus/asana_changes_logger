@@ -93,7 +93,7 @@ module AsanaChangeLogger
 
 
     def render(template)
-      renderer = ERB.new(read_template(template), nil, '>')
+      renderer = ERB.new(read_template(template), 0, '>')
       renderer.result(binding)
     end
   end
