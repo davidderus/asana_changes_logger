@@ -5,6 +5,9 @@ require 'date'
 require 'cgi'
 
 class Asana
+
+  attr_reader :from, :to
+
   def initialize(api_key)
     @root = 'https://app.asana.com/api/1.0/'
     @api_key = api_key
@@ -26,8 +29,10 @@ class Asana
 
     options = default_options.merge(options)
 
-    completed_since = (Date.today - options[:completed_start]) - (options[:completed_start] + options[:completed_since])
-    completed_since = completed_since.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
+    @from = Date.today - options[:completed_start]
+
+    @to = @from - (options[:completed_start] + options[:completed_since])
+    completed_since = @to.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
     completed_since = CGI.escape(completed_since)
 
     tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name")['data']
