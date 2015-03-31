@@ -1,8 +1,10 @@
 <% if @days > 0 %>
-> Changes between <%= Date.today - @days %> and <%= Date.today.to_s %>
+> Changes between <%= @to %> and <%= @from %>
 
-<% else %>
+<% elsif Date.today == @to %>
 > Today changes
+<% else %>
+> <%= @to %> changes
 <% end %>
 <% if remaining? %>
 

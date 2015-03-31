@@ -3,9 +3,11 @@ require 'erb'
 module AsanaChangeLogger
   class Exporter
 
-    def initialize(tasks, cli)
+    def initialize(tasks, cli, asana)
       @list_tasks = tasks
       @as_tasks = []
+      @from = asana.from
+      @to = asana.to
       @days = cli.opts[:days]
       @output = cli.opts[:output]
       @hide_author = cli.opts[:'hide-author']
