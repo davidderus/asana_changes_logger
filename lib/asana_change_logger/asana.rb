@@ -19,13 +19,14 @@ class Asana
   def get_project_tasks(project_id, options={})
 
     default_options = {
-      completed_since: nil,
+      completed_start: 0,
+      completed_since: 5,
       completed: true
     }
 
     options = default_options.merge(options)
 
-    completed_since = Date.today - options[:completed_since]
+    completed_since = (Date.today - options[:completed_start]) - (options[:completed_start] + options[:completed_since])
     completed_since = completed_since.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
     completed_since = CGI.escape(completed_since)
 
