@@ -22,7 +22,7 @@ module AsanaChangeLogger
         asana = Asana.new(conf.get_api_key)
 
         # Getting tasks
-        project_tasks = asana.get_project_tasks(cli.opts[:project], cli.opts[:days])
+        project_tasks = asana.get_project_tasks(cli.opts[:project], completed_since: cli.opts[:days])
 
         # Outputing
         export = Exporter.new(project_tasks, cli)

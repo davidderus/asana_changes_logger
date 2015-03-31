@@ -16,14 +16,22 @@ class Asana
   end
 
 
-  def get_project_tasks(project_id, completed_since = nil, completed = true)
-    completed_since = Date.today - completed_since
+  def get_project_tasks(project_id, options={})
+
+    default_options = {
+      completed_since: nil,
+      completed: true
+    }
+
+    options = default_options.merge(options)
+
+    completed_since = Date.today - options[:completed_since]
     completed_since = completed_since.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
     completed_since = CGI.escape(completed_since)
 
     tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name")['data']
 
-    if completed
+    if options[:completed]
       tasks = tasks.select { |task| task['completed'] == true }
     end
 
