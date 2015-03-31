@@ -8,8 +8,10 @@
 <body>
   <% if @days > 0 %>
     <h1>Changes between <%= @to %> and <%= @from %></h1>
-  <% else %>
+  <% elsif Date.today == @to %>
     <h1>Today changes</h1>
+  <% else %>
+    <h1><%= @from %> changes</h1>
   <% end %>
   
   <% if remaining? %>
