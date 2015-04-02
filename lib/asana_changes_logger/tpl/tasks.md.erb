@@ -1,0 +1,30 @@
+# <%= get_page_title %>
+
+<% if remaining? %>
+
+## Tasks done:
+<% end %>
+<% if empty? %>
+
+No changes
+<% else %>
+
+<% group_by(@as_tasks, 'tags').each do |key, tasks| %>
+### <%= key.size == 0 ? 'General' : key %>
+
+<% tasks.each do |task| %>
+- <%= task.get('name') %><% if task.get('assignee') && !@hide_author %> **[<%= task.get('assignee') %>]**<% end %>
+
+<% end %>
+
+<% end %>
+<% end %>
+<% if remaining? %>
+
+## Remaining tasks:
+
+<% @remaining_tasks.each do |task| %>
+- <%= task.get('name') %><% if task.get('due_on') %> *due on <%= task.get('due_on') %>*<% end %>
+
+<% end %>
+<% end %>

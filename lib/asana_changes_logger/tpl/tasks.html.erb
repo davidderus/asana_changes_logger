@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Changelog</title>
+  <style>body {font-family: 'Helvetica Neue', Helvetica;}</style>
+</head>
+<body>
+  <h1><%= get_page_title %></h1>
+
+  <% if remaining? %>
+    <h2>Tasks done:</h2>
+  <% end %>
+
+  <% if empty? %>
+    <p>No changes</p>
+  <% else %>
+  <% group_by(@as_tasks, 'tags').each do |key, tasks| %>
+  <h3><%= key.size == 0 ? 'General' : key %></h3>
+  
+  <ul>
+  <% tasks.each do |task| %>
+    <li>
+      <%= task.get('name') %>&nbsp;<% if task.get('assignee') && !@hide_author %><small>[<%= task.get('assignee') %>]</small><% end %>
+    </li>
+  <% end %>
+  </ul>
+
+  <% end %>
+  <% end %>
+
+  <% if remaining? %>
+
+    <h2>Remaining tasks:</h2>
+
+    <ul>
+    <% @remaining_tasks.each do |task| %>
+      <li><%= task.get('name') %><% if task.get('due_on') %> <em>due on <%= task.get('due_on') %></em><% end %></li>
+    <% end %>
+    </ul>
+
+  <% end %>
+</body>
+</html>
