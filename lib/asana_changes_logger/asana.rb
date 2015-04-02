@@ -19,12 +19,13 @@ class Asana
   end
 
 
-  def get_project_tasks(project_id, options={})
+  def get_project_tasks(project_id, options = {})
 
     default_options = {
       completed_start: 0,
       completed_since: 5,
-      completed: true
+      completed: true,
+      show_sections: false
     }
 
     options = default_options.merge(options)
@@ -38,6 +39,10 @@ class Asana
 
     tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name,completed_at")['data']
 
+    unless options[:show_sections]
+      tasks = tasks.select { |task| task['name'] !~ /[\w]\:$/ }
+    end
+
     if options[:completed]
       tasks = tasks.select { |task| task['completed'] == true }
     end
@@ -50,8 +55,21 @@ class Asana
   end
 
 
-  def get_remaining_tasks(project_id)
-    http_get("projects/#{project_id}/tasks?completed_since=now&opt_fields=name,due_on")['data']
+  def get_remaining_tasks(project_id, options = {})
+
+    default_options = {
+      show_sections: false
+    }
+
+    options = default_options.merge(options)
+
+    tasks = http_get("projects/#{project_id}/tasks?completed_since=now&opt_fields=name,due_on")['data']
+
+    unless options[:show_sections]
+      tasks = tasks.select { |task| task['name'] !~ /[\w]\:$/ }
+    end
+
+    return tasks
   end
 
 

@@ -22,13 +22,13 @@ module AsanaChangesLogger
         asana = Asana.new(conf.get_api_key)
 
         # Getting tasks
-        project_tasks = asana.get_project_tasks(cli.opts[:project], completed_since: cli.opts[:days], completed_start: cli.opts[:start])
+        project_tasks = asana.get_project_tasks(cli.opts[:project], completed_since: cli.opts[:days], completed_start: cli.opts[:start], show_sections: cli.opts[:sections])
 
         # Outputing
         export = Exporter.new(project_tasks, cli, asana)
 
         if cli.opts[:'log-remaining']
-          export.append_remaining asana.get_remaining_tasks(cli.opts[:project])
+          export.append_remaining asana.get_remaining_tasks(cli.opts[:project], show_sections: cli.opts[:sections])
         end
 
         if cli.opts[:output]
