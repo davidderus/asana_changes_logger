@@ -1,11 +1,11 @@
-# Asana Change Logger
+# Asana Changes Logger
 
 Output your **Asana** changes for a given time in an external file.
 
 ## Usage
 
 ```
-usage: asana_change_logger [options]
+usage: asana_changes_logger [options]
     -d, --days            Number of days to get including today (default: 5)
     -s, --start           Number of days in the past to start from (default: 0 for today)
     -p, --project         Project ID

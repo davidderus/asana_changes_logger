@@ -1,6 +1,6 @@
 require 'erb'
 
-module AsanaChangeLogger
+module AsanaChangesLogger
   class Exporter
 
     def initialize(tasks, cli, asana)

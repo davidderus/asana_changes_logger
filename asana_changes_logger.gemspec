@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'asana_change_logger/version'
+require 'asana_changes_logger/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "asana_change_logger"
-  spec.version       = AsanaChangeLogger::VERSION
+  spec.name          = "asana_changes_logger"
+  spec.version       = AsanaChangesLogger::VERSION
   spec.authors       = ["David Dérus"]
   spec.email         = ["derus.david@gmx.fr"]
 
@@ -17,9 +17,9 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://davidderus.com"
   spec.license       = "MIT"
 
-  spec.files         = ['lib/asana_change_logger.rb', 'lib/asana_change_logger/asana.rb', 'lib/asana_change_logger/cli.rb', 'lib/asana_change_logger/export.rb', 'lib/asana_change_logger/config.rb', 'lib/asana_change_logger/version.rb', 'lib/asana_change_logger/tpl/tasks.html.erb', 'lib/asana_change_logger/tpl/tasks.txt.erb', 'lib/asana_change_logger/tpl/tasks.md.erb']
+  spec.files         = ['lib/asana_changes_logger.rb', 'lib/asana_changes_logger/asana.rb', 'lib/asana_changes_logger/cli.rb', 'lib/asana_changes_logger/export.rb', 'lib/asana_changes_logger/config.rb', 'lib/asana_changes_logger/version.rb', 'lib/asana_changes_logger/tpl/tasks.html.erb', 'lib/asana_changes_logger/tpl/tasks.txt.erb', 'lib/asana_changes_logger/tpl/tasks.md.erb']
   spec.bindir        = "bin"
-  spec.executables   = ['asana_change_logger']
+  spec.executables   = ['asana_changes_logger']
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.8"
