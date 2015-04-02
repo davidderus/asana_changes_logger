@@ -6,12 +6,8 @@
   <style>body {font-family: 'Helvetica Neue', Helvetica;}</style>
 </head>
 <body>
-  <% if @days > 0 %>
-    <h1>Changes between <%= Date.today - @days %> and <%= Date.today.to_s %></h1>
-  <% else %>
-    <h1>Today changes</h1>
-  <% end %>
-  
+  <h1><%= get_page_title %></h1>
+
   <% if remaining? %>
     <h2>Tasks done:</h2>
   <% end %>

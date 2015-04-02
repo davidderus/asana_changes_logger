@@ -5,6 +5,9 @@ require 'date'
 require 'cgi'
 
 class Asana
+
+  attr_reader :from, :to
+
   def initialize(api_key)
     @root = 'https://app.asana.com/api/1.0/'
     @api_key = api_key
@@ -16,15 +19,31 @@ class Asana
   end
 
 
-  def get_project_tasks(project_id, completed_since = nil, completed = true)
-    completed_since = Date.today - completed_since
-    completed_since = completed_since.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
+  def get_project_tasks(project_id, options={})
+
+    default_options = {
+      completed_start: 0,
+      completed_since: 5,
+      completed: true
+    }
+
+    options = default_options.merge(options)
+
+    @from = Date.today - options[:completed_start]
+
+    @to = @from - (options[:completed_since] - 1)
+
+    completed_since = @to.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
     completed_since = CGI.escape(completed_since)
 
-    tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name")['data']
+    tasks = http_get("projects/#{project_id}/tasks?completed_since=#{completed_since}&opt_fields=name,completed,assignee.name,tags.name,completed_at")['data']
 
-    if completed
+    if options[:completed]
       tasks = tasks.select { |task| task['completed'] == true }
+    end
+
+    if options[:completed_start] > 0
+      tasks = tasks.select { |task| Date.parse(task['completed_at']) <= @from }
     end
 
     tasks

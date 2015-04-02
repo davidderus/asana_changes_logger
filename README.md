@@ -6,7 +6,8 @@ Output your **Asana** changes for a given time in an external file.
 
 ```
 usage: asana_change_logger [options]
-    -d, --days            Number of days to get
+    -d, --days            Number of days to get (default: 5)
+    -s, --start           Number of days in the past to start from (default: 0 for today)
     -p, --project         Project ID
     -o, --output          The output file. Allowed formats: html, md, txt
     -a, --api             Store the given API key and start using it from now

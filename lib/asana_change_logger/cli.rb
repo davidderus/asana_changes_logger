@@ -6,7 +6,8 @@ module AsanaChangeLogger
 
     def initialize
       @opts = Slop.parse suppress_errors: true do |o|
-        o.integer '-d', '--days', 'Number of days to get', default: 5
+        o.integer '-d', '--days', 'Number of days to get including today (default: 5)', default: 5
+        o.integer '-s', '--start', 'Number of days in the past to start from (default: 0 for today)', default: 0
         o.integer '-p', '--project', 'Project ID'
         o.string '-o', '--output', 'The output file. Allowed formats: html, md, txt'
         o.string '-a', '--api', 'Store the given API key and start using it from now'

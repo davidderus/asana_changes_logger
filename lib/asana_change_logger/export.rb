@@ -3,9 +3,11 @@ require 'erb'
 module AsanaChangeLogger
   class Exporter
 
-    def initialize(tasks, cli)
+    def initialize(tasks, cli, asana)
       @list_tasks = tasks
       @as_tasks = []
+      @from = asana.from
+      @to = asana.to
       @days = cli.opts[:days]
       @output = cli.opts[:output]
       @hide_author = cli.opts[:'hide-author']
@@ -41,6 +43,17 @@ module AsanaChangeLogger
 
     def empty?
       @as_tasks.size == 0
+    end
+
+
+    def get_page_title
+      if @days > 1
+        return "Changes between #{@to} and #{@from}"
+      elsif Date.today == @to
+        return "Today changes"
+      else
+        return "#{@from} changes"
+      end
     end
 
 
