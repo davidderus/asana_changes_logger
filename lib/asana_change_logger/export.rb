@@ -46,6 +46,17 @@ module AsanaChangeLogger
     end
 
 
+    def get_page_title
+      if @days > 1
+        return "Changes between #{@to} and #{@from}"
+      elsif Date.today == @to
+        return "Today changes"
+      else
+        return "#{@from} changes"
+      end
+    end
+
+
     def to_markdown
       raise 'Not ready' unless ready?
       

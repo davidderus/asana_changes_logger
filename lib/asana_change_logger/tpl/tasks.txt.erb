@@ -1,11 +1,5 @@
-<% if @days > 0 %>
-> Changes between <%= @to %> and <%= @from %>
+> <%= get_page_title %>
 
-<% elsif Date.today == @to %>
-> Today changes
-<% else %>
-> <%= @from %> changes
-<% end %>
 <% if remaining? %>
 
 Tasks done:
