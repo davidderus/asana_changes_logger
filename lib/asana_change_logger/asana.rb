@@ -32,6 +32,7 @@ class Asana
     @from = Date.today - options[:completed_start]
 
     @to = @from - (options[:completed_since] - 1)
+
     completed_since = @to.to_datetime.strftime("%Y-%m-%dT%H:%M:%S%zZ")
     completed_since = CGI.escape(completed_since)
 
