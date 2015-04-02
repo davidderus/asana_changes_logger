@@ -4,7 +4,7 @@ require 'minitest/autorun'
 
 class TestAsanaChangeLogger < Minitest::Test
   def test_that_it_has_a_version_number
-    refute_nil ::AsanaChangeLogger::VERSION
+    refute_nil ::AsanaChangesLogger::VERSION
   end
 
   def test_it_does_something_useful
@@ -12,7 +12,7 @@ class TestAsanaChangeLogger < Minitest::Test
   end
 end
 
-describe AsanaChangeLogger do
+describe AsanaChangesLogger do
  it "can be fun" do
   true.must_be_same_as false
  end
