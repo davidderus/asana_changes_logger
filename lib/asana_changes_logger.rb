@@ -1,8 +1,8 @@
-require 'asana_change_logger/version'
-require 'asana_change_logger/cli'
-require 'asana_change_logger/asana'
-require 'asana_change_logger/export'
-require 'asana_change_logger/config'
+require 'asana_changes_logger/version'
+require 'asana_changes_logger/cli'
+require 'asana_changes_logger/asana'
+require 'asana_changes_logger/export'
+require 'asana_changes_logger/config'
 
 module AsanaChangesLogger
   class Worker

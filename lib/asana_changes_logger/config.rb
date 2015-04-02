@@ -2,7 +2,7 @@ require 'yaml/store'
 
 class Config
   def initialize
-    params_dir = File.join(Dir.home, '.asana_change_logger/')
+    params_dir = File.join(Dir.home, '.asana_changes_logger/')
     unless Dir.exist?(params_dir)
       Dir.mkdir(params_dir)
     end
