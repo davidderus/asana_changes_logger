@@ -4,7 +4,7 @@ require 'asana_change_logger/asana'
 require 'asana_change_logger/export'
 require 'asana_change_logger/config'
 
-module AsanaChangeLogger
+module AsanaChangesLogger
   class Worker
     def initialize
       cli = CLI.new

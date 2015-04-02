@@ -1,6 +1,6 @@
 require 'Slop'
 
-module AsanaChangeLogger
+module AsanaChangesLogger
   class CLI
     attr_reader :opts
 
@@ -14,7 +14,7 @@ module AsanaChangeLogger
         o.bool '-lr', '--log-remaining', 'Log remainins tasks too', default: false
         o.bool '-ha', '--hide-author', 'Hide task assignee from changelog', default: false
         o.on '-v', '--version', 'Print the current version' do
-          puts AsanaChangeLogger::VERSION
+          puts AsanaChangesLogger::VERSION
           exit
         end
         o.on '-h', '--help', 'Print help' do
