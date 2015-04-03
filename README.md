@@ -17,3 +17,21 @@ usage: asana_changes_logger [options]
     -v, --version         Print the current version
     -h, --help            Print help
 ```
+
+## Installation
+
+• Clone the repository
+
+``git clone https://github.com/davidderus/asana_changes_logger.git``
+
+• Go in the *asana_changes_logger* directory and build the gem with :
+
+``cd asana_changes_logger && gem build asana_changes_logger.gemspec``
+
+• Install the gem
+
+``gem install asana_changes_logger-1.0.1.gem``
+
+• Now you can use asana_changes_logger with :
+
+``asana_changes_logger``
