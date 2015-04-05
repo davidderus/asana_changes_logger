@@ -1,6 +1,6 @@
 # Asana Changes Logger
 
-Output your **Asana** changes for a given time in an external file.
+Output your **Asana** changes for a given time to an external file.
 
 ## Usage
 
@@ -35,3 +35,4 @@ usage: asana_changes_logger [options]
 • Now you can use asana_changes_logger with :
 
 ``asana_changes_logger``
+
