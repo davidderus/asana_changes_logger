@@ -32,7 +32,11 @@ usage: asana_changes_logger [options]
 
 ``gem install asana_changes_logger-1.0.1.gem``
 
-• Now you can use asana_changes_logger with :
+• Register your Asana's API Key (*needed once*) :
 
-``asana_changes_logger``
+``asana_changes_logger -a TheKey``
+
+• Now you can use asana_changes_logger :
+
+``asana_changes_logger -p XXXXXXXXXXXXXX``
 
