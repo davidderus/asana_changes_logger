@@ -2,6 +2,10 @@
 
 Output your **Asana** changes for a given time to an external file.
 
+## Disclaimer
+
+⚠️ This app is not maintained anymore ⚠️
+
 ## Usage
 
 ```
